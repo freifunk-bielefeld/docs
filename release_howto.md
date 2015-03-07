@@ -89,6 +89,7 @@ Nach der letzten Signatur folgt eine abschließenden leere Zeile.
 
 Hinweis:
  * Die Spalten im manifest dürfen nur mit *einem* Leerzeichen getrennt werden
+ * der Zeilenumbruch vor den drei Bindestrichen darf nicht entfernt werden, viele Editoren machen zeigen das nicht korrekt an
  * Die Bezeichnung des Routermodells im Manifest (z.B. ,,tp-link-tl-wdr4300-v1") wir mit folgender Zeile erstellt:  
    ```cat /tmp/sysinfo/model | tr '[A-Z]' '[a-z]' | sed -r 's/[^a-z0-9]+/-/g;s/-$//'```
 
