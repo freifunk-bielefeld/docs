@@ -18,7 +18,8 @@ If the gateway itself has no IPv6 endpoint, all addresses will be constructed th
 ##What is NAT64?
 
 NAT64 on the gateway translates all IPv6 packets using the special prefix to IPv4 packets.
-The target IPv4 address extracted fro mthe IPv6 address of the paket.
+The target IPv4 address extracted fro mthe IPv6 address of the packet.
+For NAT64 we use the program called "tayga".
 
 ##What are IPv6 Router Advertisments?
 
@@ -29,6 +30,7 @@ if the sender is a gateway and what the DNS servers address is.
 Usually the Gateways and DNS servers address are the same.
 The prefix might be one for the internal network and/or a public prefix which allows
 a host to give itself a public IP address. This will make a host reachable from the Internet.
+Router Advertisments can be send out using the program called "radvd".
 
 #Testing a gateway
 
