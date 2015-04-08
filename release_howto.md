@@ -32,6 +32,8 @@ Zum generieren eines Schlüsselpaares wird ecdsautils verwendet.
 
 Installation:
 ```
+sudo apt-get install cmake pkg-config g++
+
 wget http://git.universe-factory.net/libuecc/snapshot/libuecc-4.zip
 unzip libuecc-4.zip
 cd libuecc-4
