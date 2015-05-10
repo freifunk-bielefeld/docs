@@ -33,9 +33,9 @@ Installation:
 ```
 sudo apt-get install cmake pkg-config g++
 
-wget http://git.universe-factory.net/libuecc/snapshot/libuecc-4.zip
-unzip libuecc-4.zip
-cd libuecc-4
+wget http://git.universe-factory.net/libuecc/snapshot/libuecc-5.zip
+unzip libuecc-5.zip
+cd libuecc-5
 cmake .
 make
 make install
