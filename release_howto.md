@@ -7,10 +7,42 @@ Ein release besteht aus drei Schritten:
 
 ##Images bauen
 
-Wie ein Image gebaut wird, wurde bereits beschrieben. Nun muss im Menü von "Target Profile" der Punkt "Default Target (all drivers)" angewählt werden. Nach dem Bauen für verschiedene Plattformen ("Target System") sind die Images fertig.
+Wie ein Image gebaut wird, wurde bereits beschrieben. Anstatt für jede Platform "Target Profile" und eventuell "Subtarget"
+per "make menuconfig" von Hand zu selektieren, kann dies auch per Script geschehen:
 
-Wenn ein Linux Kernel startet, wird im Kernel Log der Name des Benutzer und Systems angezeigt, auf dem die Images
-gebaut wurden. Mit einer temporären Änderung am System kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
+
+```
+#!/bin/sh
+
+platforms='
+	CONFIG_TARGET_ath25=y
+	CONFIG_TARGET_ar71xx=y
+	CONFIG_TARGET_brcm2708=y\nCONFIG_TARGET_brcm2708_bcm2708=y
+	CONFIG_TARGET_brcm2708=y\nCONFIG_TARGET_brcm2708_bcm2709=y
+	CONFIG_TARGET_bcm53xx=y
+	CONFIG_TARGET_brcm47xx=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt305x=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7620=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7621=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7628=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt3883=y
+	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt288x=y
+'
+
+#git clone ..
+
+for platform in $platforms; do
+	echo $platform > .config
+	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
+	make defconfig
+	make -j3
+done
+```
+
+Die images sollten dann nach einiger Zeit fertig sein.
+
+Wenn der Linux Kernel vom Image startet, wird im Kernel Log (`dmesg`) der Name des Benutzer und Systems angezeigt, auf dem die Images
+gebaut wurden. Mit einer [Änderung am System](kernel_email.md) kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
 
 #Manifest-Datei erstellen
 
