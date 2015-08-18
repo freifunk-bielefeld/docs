@@ -42,7 +42,7 @@ zugänglich gemacht werden:
 mount_root
 ```
 
-Nun kann mittels des  Editors `vi` Datei repariert werden, z.B.:
+Nun kann mit dem Editor `vi`, die Datei auf dem Router editiert/repariert werden, z.B.:
 
 ```
 vi /etc/config/network
@@ -56,9 +56,33 @@ für Neulinge wird empfohlen.
 Um ein neues Image aufzuspielen, muss dieses auf den Router in das Verzeichnis
 /tmp kopiert werden. Dieses Verzeichnis ist Teil des RAM-Speichers und hat genug Platz.
 
-Da der SSH-Server im Failsafe-Modus oft nicht startet (`/etc/init.d/sshd start`),
-muss ein anderer Weg gefunden werden.
-Stattdessen kann oft im Verzeichnis, mit dem neuen Image, der Python Web-Server gestartet werden:
+Dafür eigenen sich zwei Ansätze:
+- kopieren per SCP bzw. PuTTY
+- kopieren mit wget und eigenem Webserver
+
+PuTTY bietet sich bei Windows-Systemen an, wget bei Linux-Systemen.
+
+###Kopieren per PuTTY
+
+Um sich mit PuTTY zu verbinden, wird über die bestehende Konsole (z.B. wie oben beschrieben per telnet)
+der SSH-Server auf dem Router gestartet:
+
+```
+/etc/init.d/dropbear start
+```
+
+Nun sollte ein Zugang per PuTTY möglich sein. Die Zieladresse ist 192.168.1.1, der Benutzername root 
+und das Passwortfeld muss leer gelassen werden.
+
+Mit PuTTY kann jetzt auch per SCP (Secure Copy) das neue Image vom eigen Rechner in das Verzeichnis /tmp
+des Routers kopiert werden können.
+
+###Kopieren mit wget
+
+Funktioniert die Methode mit PuTTY/SCP nicht, kann lokal ein Webserver gestartet werden.
+Ein einfacher Webserver kann gestartet werden, indem im Verzeichnis mit dem neuen Image,
+der Python Web-Server gestartet wird:
+
 ```
 python -m SimpleHTTPServer
 ```
@@ -67,7 +91,12 @@ Auf dem Router kann das Image nun per wget heruntergeladen werden (hier für ein
 ```
 cd /tmp/
 wget http://192.168.1.2:8000/openwrt-ar71xx-generic-tl-wr1043nd-v1-squashfs-sysupgrade.bin
+```
+
+###Flashen
+Ist das neue Image auf dem Router, kann nun geflasht werden:
+```
 sysupgrade -n openwrt-ar71xx-generic-tl-wr1043nd-v1-squashfs-sysupgrade.bin
 ```
 
-Der Router sollte nun das Image flashen und dann neu starten.
+Der Router sollte nun mit dem neuen Image geflasht werden und dann neu starten.
