@@ -8,3 +8,4 @@
  * [SSH Server Zugriff](ssh_keys.md) ohne Passwort
  * [Failsafe aktivieren und nutzen](access_failssafe.md)
  * Ein [Internet-Gateway](gateway_testing.md) testen im Freifunknetz
+ * Einen problematischen Knoten [blockieren](block_node.md).
