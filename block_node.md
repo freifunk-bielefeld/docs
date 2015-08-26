@@ -32,6 +32,11 @@ Irgendwann ist die Addresse des Internetanschlusses, über die der Knoten verbun
 gefunden. Dann kann über den Status-Socket von fastd der fastd-Schlüssel herausgesucht
 werden, den der Knoten verwendet.
 
+Ein Status-Socket steht zur Verfügung, wenn fastd entweder mit z.B. ```--status-socket /var/run/fastd.sock```
+gestartet wurde, oder in der fastd.conf eine Zeile mit ```status socket "/var/run/fastd.sock";``` enthalten ist.
+
+Der (Unix-) Socket läßt sich dann z.B. mit socat auslesen:
+
 ```
 socat - UNIX-CONNECT:/tmp/fastd.sock
 ```
