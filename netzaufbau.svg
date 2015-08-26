@@ -16,7 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="scheme.svg">
+   sodipodi:docname="netzaufbau.svg"
+   inkscape:export-filename="/home/mwarning/myProjects/Freifunk/docs/netzaufbau.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <marker
@@ -4282,11 +4285,11 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
      inkscape:cx="-228.66672"
-     inkscape:cy="-669.29176"
+     inkscape:cy="4016.4225"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -4295,7 +4298,7 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     showborder="false">
+     showborder="true">
     <inkscape:grid
        type="xygrid"
        id="grid2987"
@@ -4312,7 +4315,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
