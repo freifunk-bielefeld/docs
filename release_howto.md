@@ -39,7 +39,8 @@ for platform in $platforms; do
 done
 ```
 
-Die images sollten dann nach einiger Zeit fertig sein.
+Die Images sollten dann nach einiger Zeit fertig sein.
+Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubaunen.
 
 Wenn der Linux Kernel vom Image startet, wird im Kernel Log (`dmesg`) der Name des Benutzer und Systems angezeigt, auf dem die Images
 gebaut wurden. Mit einer [Änderung am System](kernel_email.md) kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
@@ -119,6 +120,7 @@ ecdsasign manifest < secret.key
 Jede Signatur wird an das Manifest angehängt (eine Signatur pro Zeile).
 Es muss eine ausreichende Anzahl von Signaturen (zwei oder mehr) vorliegen.
 Nach der letzten Signatur folgt eine abschließende leere Zeile.
+Um in Zukunft das Manifest zu aktualisieren, gibt es auch ein [Script](release_update_manifest.sh).
 
 Hinweis:
  * Die Spalten im Manifest dürfen nur mit *einem* Leerzeichen getrennt werden
