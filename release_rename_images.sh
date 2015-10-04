@@ -1,14 +1,16 @@
 #!/bin/bash
 
-ident="ffbi-0.5.0"
-
-if [ ! -d "$1" ]; then
-  echo "usage: $0 <folder>"
+if [ $# -ne 2 -o ! -d "$2" ]; then
+  echo "usage: $0 <ident> <folder>"
   exit 1
 fi
 
-for path in $(find "$1" -iname "openwrt*"); do
-        dir="${1%/*}"
+#.e.g "ffbi-0.5.0"
+ident="$1"
+path="$2"
+
+for path in $(find "$path" -iname "openwrt*"); do
+        dir="${path%/*}"
         file="${path##*/}"
         if [ "$file" != "${file/$ident/}" ]; then
                 echo "Already contains '$ident': $path"
@@ -17,3 +19,5 @@ for path in $(find "$1" -iname "openwrt*"); do
         new_file=`echo "$file" | sed -e "s/openwrt/openwrt-$ident/g"`
         mv "$path" "$dir/$new_file"
 done
+
+exit 0
