@@ -45,11 +45,6 @@ OLDIFS=$IFS
 IFS="
 "
 for line in $(cat "$manifest"); do
-  if [ "$line" = "---" ]; then
-	echo $line >> manifest_new
-	exit 0
-  fi
-
   write_line $line
 done
 IFS="$OLDIFS"
