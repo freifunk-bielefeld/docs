@@ -16,8 +16,8 @@ for path in $(find "$path" -iname "openwrt*"); do
                 echo "Already contains '$ident': $path"
                 continue
         fi
-        new_file=`echo "$file" | sed -e "s/openwrt/openwrt-$ident/g"`
-        mv "$path" "$dir/$new_file"
+	new_file="$ident"`echo "$file" | sed -e "s/openwrt-[^-]*-[^-]*//"`
+	mv "$path" "$dir/$new_file"
 done
 
 exit 0
