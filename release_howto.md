@@ -66,9 +66,9 @@ Installation:
 ```
 sudo apt-get install cmake pkg-config g++
 
-wget http://git.universe-factory.net/libuecc/snapshot/libuecc-5.zip
-unzip libuecc-5.zip
-cd libuecc-5
+wget http://git.universe-factory.net/libuecc/snapshot/libuecc-7.zip
+unzip libuecc-7.zip
+cd libuecc-7
 cmake .
 make
 make install
@@ -80,7 +80,7 @@ apt-get install pkg-config
 wget https://github.com/tcatm/ecdsautils/archive/v0.3.2.zip -O ecdsautils-0.3.2.zip
 unzip ecdsautils-0.3.2.zip
 cd ecdsautils-0.3.2/
-cmake .
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig cmake .
 make
 make install
 cd ..
