@@ -37,6 +37,7 @@ for platform in $platforms; do
 	platform_base="$(echo $platform | awk -F "=" '{print($1)}')"
 	models="$(grep $platform_base .config | awk '/^#/{print($2)}')"
 	for model in $models; do
+		rm -rf ./build_dir/target*
 		# Select specific model
 		echo "$platform" > .config
 		echo "$model=y" >> .config
