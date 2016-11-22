@@ -32,7 +32,7 @@ platforms='
 #git clone ..
 
 for platform in $platforms; do
-	echo "$platform=y" > .config
+	echo "$platform" > .config
 	make defconfig
 	platform_base="$(echo $platform | awk -F "=" '{print($1)}')"
 	models="$(grep $platform_base .config | awk '/^#/{print($2)}')"
