@@ -2,10 +2,10 @@
 
 if [ $# -ne 2 -o ! -d "$2" ]; then
   echo "usage: $0 <ident> <folder>"
+  echo "E.g. $0 ffbi-0.5.0 bin/ar71xxx/"
   exit 1
 fi
 
-#.e.g "ffbi-0.5.0"
 ident="$1"
 path="$2"
 
