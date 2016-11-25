@@ -19,7 +19,7 @@ Ist im richtigen Moment der Failsafe aktiviert worden, blinkt sofort eine der LE
 am Gerät ca. 5 mal die Sekunde.
 
 Als nächstes muss der eigene Computer mit dem Router per Netzwerkkabel
-verbunden werden und dem Comuter manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden.
+verbunden werden und dem Computer manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden.
 
 Nun kann man sich per Telnet auf dem Router einloggen:
 ```
