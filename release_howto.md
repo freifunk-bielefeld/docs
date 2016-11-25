@@ -32,18 +32,37 @@ platforms='
 #git clone ..
 
 for platform in $platforms; do
-	echo $platform > .config
-	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
+	echo "$platform" > .config
 	make defconfig
-	make -j3
+	platform_base="$(echo $platform | awk -F "=" '{print($1)}')"
+	models="$(grep $platform_base .config | awk '/^#/{print($2)}')"
+	for model in $models; do
+		rm -rf ./build_dir/target*
+		# Select specific model
+		echo "$platform" > .config
+		echo "$model=y" >> .config
+		echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
+
+		# Debug output
+		echo -e "Build:\n$(cat .config)"
+
+		# Build image
+		make defconfig
+		make -j4
+	done
 done
 ```
 
-Die Images sollten dann nach einiger Zeit fertig sein.
+Die Konfiguration für jedes Modell, neu zu generieren hat den Vorteil, das für jedes Model die Standardkonfiguration verwendet wird.
+Ansonsten wird der kleinste gemeinsame Nenner der Platform genommen.
+Übrigens, beide LEDE geht das wesentlich einfacher. "target profile" => "multiple devices" und "target devices" => "per-device rootfs" müssen aktiviert werden.
+
+Die Images sollten dann irgendwann fertig sein.
 Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubaunen.
 
 Wenn der Linux Kernel vom Image startet, wird im Kernel Log (`dmesg`) der Name des Benutzer und Systems angezeigt, auf dem die Images
 gebaut wurden. Mit einer [Änderung am System](kernel_email.md) kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
+
 
 #Manifest-Datei erstellen
 
