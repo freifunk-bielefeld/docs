@@ -58,7 +58,7 @@ Ansonsten wird der kleinste gemeinsame Nenner der Platform genommen.
 Übrigens, beide LEDE geht das wesentlich einfacher. "target profile" => "multiple devices" und "target devices" => "per-device rootfs" müssen aktiviert werden.
 
 Die Images sollten dann irgendwann fertig sein.
-Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubaunen.
+Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubauen.
 
 Wenn der Linux Kernel vom Image startet, wird im Kernel Log (`dmesg`) der Name des Benutzer und Systems angezeigt, auf dem die Images
 gebaut wurden. Mit einer [Änderung am System](kernel_email.md) kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
@@ -72,7 +72,7 @@ alle Router im Netz mit einem anderen Image flasht und damit kompromittiert.
 
 ##Erstellen der digitalen Signatur
 
-Der Autoupdater ist ein Programm, das auf dem Router läuft und in Intervallen unter einer angegebenen Adresse nach neuen Versionen der Firmware sucht.
+Der Autoupdater Programm läuft auf dem Router und sucht in Intervallen unter angegebenen Adressen nach neuen Versionen der Firmware.
 Wird eine gefunden, wird diese neue Firmware heruntergeladen und installiert. Die Router-Einstellungen bleiben erhalten. Ein Update sollte daher selten auffallen.
 
 Um zu verhinden, dass andere Leute ein fremdes Images ins Netz stellen, werden die Images von einer oder mehreren Personen signiert.
@@ -142,17 +142,17 @@ Nach der letzten Signatur folgt eine abschließende leere Zeile.
 Um in Zukunft das Manifest zu aktualisieren, gibt es auch ein [Script](release_update_manifest.sh).
 
 Hinweis:
- * Die Spalten im Manifest dürfen nur mit *einem* Leerzeichen getrennt werden
- * der Zeilenumbruch vor den drei Bindestrichen darf nicht entfernt werden, viele Editoren zeigen das nicht korrekt an
+ * Die Spalten im Manifest dürfen nur mit *einem* Leerzeichen getrennt werden.
+ * Der Zeilenumbruch vor den drei Bindestrichen darf nicht entfernt werden, viele Editoren zeigen das nicht korrekt an.
  * Die Bezeichnung des Routermodells im Manifest (z.B. ,,tp-link-tl-wdr4300-v1") wird mit folgender Zeile erstellt:  
    ```cat /tmp/sysinfo/model | tr '[A-Z]' '[a-z]' | sed -r 's/[^a-z0-9]+/-/g;s/-$//'```
 
 # Dateien auf den Update-Server kopieren
 
-Die Datei `manifest` und die `*sysupgrade.bin` Images liegen alle in dem Verzeichnis,
+Die Datei `manifest` und die `*sysupgrade.bin` Dateien liegen alle in dem Verzeichnis,
 das in der Firmware der Router in der Datei /etc/config/autoupdater angegeben wurde.
 
 Ein Router wird mehrmals am Tag prüfen, ob unter der angegebenen Stelle ein manifest
-verfügbar ist. Falls ja, und wenn die Versionsnummer höher ist, wird geschaut ob die Mindestanzahl
-der geforderten validen Unterschriften vorhanden ist. Falls dies der Fall ist wird das passende image heruntergeladen,
+verfügbar ist (siehe auch /etc/crontabs/root). Falls das der Fall ist und wenn die Versionsnummer höher ist, wird geschaut ob die Mindestanzahl
+der geforderten Unterschriften vorhanden ist und mit den Unterschriften übereinstimmen. Stimmt alles, dann wird das passende image heruntergeladen,
 die Prüfsumme überprüft und das Update angewendet. Der Router startet dann neu.
