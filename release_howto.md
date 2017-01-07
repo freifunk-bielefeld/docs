@@ -34,7 +34,7 @@ platforms='
 for platform in $platforms; do
 	echo "$platform" > .config
 	make defconfig
-	platform_base="$(echo $platform | awk -F "=" '{print($1)}')"
+	platform_base="$(echo $platform | awk -F "=" '{print($1); exit;}')"
 	models="$(grep $platform_base .config | awk '/^#/{print($2)}')"
 	for model in $models; do
 		rm -rf ./build_dir/target*
