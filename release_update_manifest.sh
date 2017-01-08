@@ -89,7 +89,7 @@ find_file() {
 
 # Write the new manifest file.
 echo "BRANCH=stable" > $manifest_new
-echo > $manifest_new
+echo >> $manifest_new
 echo "# model version sha512sum filename " >> $manifest_new
 
 for model in $models; do
