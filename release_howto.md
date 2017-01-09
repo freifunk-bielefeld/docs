@@ -52,6 +52,7 @@ for platform in $platforms; do
 	done
 done
 ```
+*Achtung: Dieses Script funktioniert noch nicht korrekt und manchmal fehlen WLAN Treiber!*
 
 Die Konfiguration für jedes Modell, neu zu generieren hat den Vorteil, das für jedes Model die Standardkonfiguration verwendet wird.
 Ansonsten wird der kleinste gemeinsame Nenner der Platform genommen.
