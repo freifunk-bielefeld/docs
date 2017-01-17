@@ -147,6 +147,8 @@ Hinweis:
  * Der Zeilenumbruch vor den drei Bindestrichen darf nicht entfernt werden, viele Editoren zeigen das nicht korrekt an.
  * Die Bezeichnung des Routermodells im Manifest (z.B. ,,tp-link-tl-wdr4300-v1") wird mit folgender Zeile erstellt:  
    ```cat /tmp/sysinfo/model | tr '[A-Z]' '[a-z]' | sed -r 's/[^a-z0-9]+/-/g;s/-$//'```
+* sollte libuecc.so.0 nicht gefunden werden, dann funktioniert eventuell folgendes:  
+   ```LD_PRELOAD="/usr/local/lib/libuecc.so" ecdsasign manifest < secret.key```
 
 # Dateien auf den Update-Server kopieren
 
