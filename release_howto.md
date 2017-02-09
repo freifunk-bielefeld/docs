@@ -56,7 +56,7 @@ done
 
 Die Konfiguration für jedes Modell, neu zu generieren hat den Vorteil, das für jedes Model die Standardkonfiguration verwendet wird.
 Ansonsten wird der kleinste gemeinsame Nenner der Platform genommen.
-Übrigens, beide LEDE geht das wesentlich einfacher. "target profile" => "multiple devices" und "target devices" => "per-device rootfs" müssen aktiviert werden.
+Übrigens, beide LEDE geht das wesentlich einfacher. "Target Profile" => "Multiple Devices", "Target Devices" =>  "Enable all profiles by default"  sowie "Use a per-device root filesystem ..." müssen aktiviert werden.
 
 Die Images sollten dann irgendwann fertig sein.
 Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubauen.
