@@ -9,6 +9,8 @@ alle Änderungen am System.
 Dabei handelt es sich um einen Mechanismus der in OpenWrt eigebaut ist.
 Daher ist auch die [Anleitung](http://wiki.openwrt.org/de/doc/howto/generic.failsafe) von OpenWrt zu empfehlen.
 
+Eine Video-Anleitung (für Windows-Nutzer ist) hier zu finden: https://www.youtube.com/watch?v=gtyJO1ZgKDY
+
 Zum Aktivieren muss der Router aus- und wieder angestellt werden.
 Während des Neustarts des Routers muss dabei zum richtigen Zeitpunkt
 der Reset-Knopf betätigt werden. Ein mehrfaches betätigen ist daher zu
