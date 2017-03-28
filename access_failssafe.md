@@ -32,11 +32,11 @@ Normalerweise sollte jeder der LAN-Anschlüsse funktionieren.
 Bei einigen Modellen funktioniert das jedoch nur der WAN-Anschluss.
 Ist der Failsafe aktiviert, muss dann probiert werden.
 
-##Router Zurücksetzen
+## Router Zurücksetzen
 Soll nun der Router zurückgesetzt werden reicht es den Befehl `firstboot` auszuführen,
 die Sicherheitsabfrage zu bestätigen und den Router neu zu starten.
 
-##Konfiguration Reparieren
+## Konfiguration Reparieren
 
 Um Einstellungen zu ändern müssen diese zuerst wieder mit dem Befehl `mount_root`
 zugänglich gemacht werden:
@@ -53,7 +53,7 @@ vi /etc/config/network
 Die Bedienung von `vi` ist jedoch gewöhnungsbedürftig. Eine Anleitung
 für Neulinge wird empfohlen.
 
-##Neues Image einspielen
+## Neues Image einspielen
 
 Um ein neues Image aufzuspielen, muss dieses auf den Router in das Verzeichnis
 /tmp kopiert werden. Dieses Verzeichnis ist Teil des RAM-Speichers und hat genug Platz.
@@ -64,7 +64,7 @@ Dafür eigenen sich zwei Ansätze:
 
 PuTTY bietet sich bei Windows-Systemen an, wget bei Linux-Systemen.
 
-###Kopieren per PuTTY
+### Kopieren per PuTTY
 
 Um sich mit PuTTY zu verbinden, wird über die bestehende Konsole (z.B. wie oben beschrieben per telnet)
 der SSH-Server auf dem Router gestartet:
@@ -79,7 +79,7 @@ und das Passwortfeld muss leer gelassen werden.
 Mit PuTTY kann jetzt auch per SCP (Secure Copy) das neue Image vom eigen Rechner in das Verzeichnis /tmp
 des Routers kopiert werden können.
 
-###Kopieren mit wget
+### Kopieren mit wget
 
 Funktioniert die Methode mit PuTTY/SCP nicht, kann lokal ein Webserver gestartet werden.
 Ein einfacher Webserver kann gestartet werden, indem im Verzeichnis mit dem neuen Image,
@@ -95,7 +95,7 @@ cd /tmp/
 wget http://192.168.1.2:8000/openwrt-ar71xx-generic-tl-wr1043nd-v1-squashfs-sysupgrade.bin
 ```
 
-###Flashen
+### Flashen
 Ist das neue Image auf dem Router, kann nun geflasht werden:
 ```
 sysupgrade -n openwrt-ar71xx-generic-tl-wr1043nd-v1-squashfs-sysupgrade.bin
