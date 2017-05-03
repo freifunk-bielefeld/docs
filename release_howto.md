@@ -43,7 +43,7 @@ for platform in $platforms; do
 	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
 	
 	# Debug output
-	echo -e "Build: $platform"
+	echo "Build: $platform"
 
 	# Build image
 	make defconfig
