@@ -32,8 +32,6 @@ platforms='
 	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt288x=y
 '
 
-#git clone ..
-
 for platform in $platforms; do
 	echo "$platform" > .config
 	
