@@ -1,11 +1,11 @@
-#Ein Release fertig machen
+# Ein Release fertig machen
 
 Ein release besteht aus drei Schritten:
  * Images bauen
  * Manifest-Datei erstellen
  * Dateien auf den Update-Server kopieren
 
-##Images bauen
+## Images bauen
 
 Wie ein Image gebaut wird, wurde bereits beschrieben. Anstatt für jede Platform "Target Profile" und eventuell "Subtarget"
 per "make menuconfig" von Hand zu selektieren, kann dies auch per Script geschehen:
@@ -65,13 +65,13 @@ Wenn der Linux Kernel vom Image startet, wird im Kernel Log (`dmesg`) der Name d
 gebaut wurden. Mit einer [Änderung am System](kernel_email.md) kann dies z.B. auf die e-Mail-Adresse der Freifunk-Community gesetzt werden.
 
 
-#Manifest-Datei erstellen
+# Manifest-Datei erstellen
 
 Die Manifest-Datei ist eine Textdatei und enthält den Namen der Imagedateien, die Firmwareversion, die Prüfsummen der Images
 und digitale Unterschriften. Die digitalen Unterschriften stellen sicher, dass die Images autorisiert sind und nicht jemand
 alle Router im Netz mit einem anderen Image flasht und damit kompromittiert.
 
-##Erstellen der digitalen Signatur
+## Erstellen der digitalen Signatur
 
 Der Autoupdater Programm läuft auf dem Router und sucht in Intervallen unter angegebenen Adressen nach neuen Versionen der Firmware.
 Wird eine gefunden, wird diese neue Firmware heruntergeladen und installiert. Die Router-Einstellungen bleiben erhalten. Ein Update sollte daher selten auffallen.
@@ -117,7 +117,7 @@ ecdsakeygen -p < secret.key > public.key
 
 Auf dem Router sind in der Konfigurationsdatei /etc/config/autoupdater im Eintrag "mirror" die Adresse und Pfad eingetragen, unter dem die Images (und das sogenannte manifest) zu finden sein sollen.
 
-#Manifest-Datei erstellen
+# Manifest-Datei erstellen
 
 Die Datei `manifest` sieht z.B. folgendermaßen aus:
 
