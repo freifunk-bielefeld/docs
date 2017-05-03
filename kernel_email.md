@@ -1,12 +1,12 @@
 
-#Die EMail-Adresse im Kernel setzen
+# Die EMail-Adresse im Kernel setzen
 
-Wenn ein Linux Kernel bootet, wie bei OpenWrt, wir in der ersten Zeile des Kernel-Logs (`dmesg`)
+Wenn ein Linux Kernel bootet, wie bei LEDE, wir in der ersten Zeile des Kernel-Logs (`dmesg`)
 eine EMail angezeigt die aus dem Benutzernamen und dem Namen des System besteht, auf dem
 das Image gebaut wurde.
 
 Damit der Kernel beim Booten die EMail-Adresse info@freifunk-bielefeld.de anzeigt anstatt z.B.
-user@hostname des eigenen Systems, müssen zwei Wrapper unter /usr/local/bin erstellt werden:
+user@hostname des eigenen Systems, mÃ¼ssen zwei Wrapper unter /usr/local/bin erstellt werden:
 
 /usr/local/bin/whoami:
 ```
@@ -52,12 +52,12 @@ fi
 PATH=$NEWPATH hostname
 ```
 
-Zuletzt noch beide Dateien ausführbar machen:
+Zuletzt noch beide Dateien ausfÃ¼hrbar machen:
 ```
 chmod a+x /usr/local/bin/whoami
 chmod a+x /usr/local/bin/hostname
 ```
 
-Jetzt das OpenWRT-Image bauen. :-)
+Jetzt das LEDE-Image bauen. :-)
 
 Quelle: http://tjworld.net/wiki/Linux/Kernel/Build/CustomiseVersionString
