@@ -1,6 +1,8 @@
-# Ein Release fertig machen
+# Ein Freifunk Release fertig machen
 
-Ein release besteht aus drei Schritten:
+Diese Anleitung baut alle Images für LEDE mit einer Freifunk Konfiguration.
+
+Ein Release besteht aus drei Schritten:
  * Images bauen
  * Manifest-Datei erstellen
  * Dateien auf den Update-Server kopieren
@@ -15,6 +17,7 @@ per "make menuconfig" von Hand zu selektieren, kann dies auch per Script gescheh
 #!/bin/sh
 
 platforms='
+	CONFIG_TARGET_arm64=y
 	CONFIG_TARGET_ath25=y
 	CONFIG_TARGET_ar71xx=y
 	CONFIG_TARGET_brcm2708=y\nCONFIG_TARGET_brcm2708_bcm2708=y
@@ -33,30 +36,26 @@ platforms='
 
 for platform in $platforms; do
 	echo "$platform" > .config
+	
+	echo "CONFIG_TARGET_MULTI_PROFILE=y" >> .config
+	echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
+	echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
+	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
+	
+	# Debug output
+	echo -e "Build: $platform"
+
+	# Build image
 	make defconfig
-	platform_base="$(echo $platform | awk -F "=" '{print($1); exit;}')"
-	models="$(grep $platform_base .config | awk '/^#/{print($2)}')"
-	for model in $models; do
-		rm -rf ./build_dir/target*
-		# Select specific model
-		echo "$platform" > .config
-		echo "$model=y" >> .config
-		echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
-
-		# Debug output
-		echo -e "Build:\n$(cat .config)"
-
-		# Build image
-		make defconfig
-		make -j4
-	done
+	make -j4
 done
 ```
-*Achtung: Dieses Script funktioniert noch nicht korrekt und manchmal fehlen WLAN Treiber!*
 
-Die Konfiguration für jedes Modell, neu zu generieren hat den Vorteil, das für jedes Model die Standardkonfiguration verwendet wird.
-Ansonsten wird der kleinste gemeinsame Nenner der Platform genommen.
-Übrigens, beide LEDE geht das wesentlich einfacher. "Target Profile" => "Multiple Devices", "Target Devices" =>  "Enable all profiles by default"  sowie "Use a per-device root filesystem ..." müssen aktiviert werden.
+Dieses obige Script selektiert folgende Optionen und nachfolgend jede Platform einzeln:
+
+ * "Target Profile" => "Multiple Devices"
+ * "Target Devices" =>  "Enable all profiles by default" 
+ * "Target Devices" => "Use a per-device root filesystem ..."
 
 Die Images sollten dann irgendwann fertig sein.
 Ein [Script](release_rename_images.sh) ermöglichst es, in den Namen der Image-Dateien z.B. ein 0.4.4-ffbi einzubauen.
