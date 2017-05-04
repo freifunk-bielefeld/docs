@@ -88,7 +88,7 @@ unzip libuecc-7.zip
 cd libuecc-7
 cmake .
 make
-make install
+sudo make install
 cd ..
 rm -rf libuecc*
 
@@ -99,11 +99,11 @@ unzip ecdsautils-0.3.2.zip
 cd ecdsautils-0.3.2/
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig cmake .
 make
-make install
+sudo make install
 cd ..
 rm -rf ecdsautils*
 
-ldconfig
+sudo ldconfig
 ```
 
 Nun kann ein neues Schlüsselpaar (bestehend aus zwei Dateien) generiert werden:
