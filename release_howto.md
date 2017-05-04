@@ -83,7 +83,7 @@ Installation:
 ```
 sudo apt-get install cmake pkg-config g++
 
-wget http://git.universe-factory.net/libuecc/snapshot/libuecc-7.zip
+wget https://git.universe-factory.net/libuecc/snapshot/libuecc-7.zip
 unzip libuecc-7.zip
 cd libuecc-7
 cmake .
