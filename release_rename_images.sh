@@ -2,7 +2,7 @@
 
 if [ $# -ne 2 -o ! -d "$2" ]; then
   echo "usage: $0 <ident> <folder>"
-  echo "E.g. $0 ffbi-0.5.0 bin/ar71xxx/"
+  echo "E.g. $0 0.5.0 bin/ar71xxx/"
   exit 1
 fi
 
