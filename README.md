@@ -7,5 +7,6 @@
  * [Kernel EMail setzen](kernel_email.md)
  * [SSH Server Zugriff](ssh_keys.md) ohne Passwort
  * [Failsafe aktivieren und nutzen](access_failssafe.md)
+ * [Batman-adv Patches bearbeiten](edit_batman_patches.md)
  * Ein [Internet-Gateway](gateway_testing.md) testen im Freifunknetz
  * Einen problematischen Knoten [blockieren](block_node.md).
