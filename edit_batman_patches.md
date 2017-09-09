@@ -1,4 +1,34 @@
-# Batman-adv Patches modifizieren
+# Batman-adv Patches ändern
+
+# Einleitung
+
+Bei den Freifunk Firmwares (gluon oder auch andere), gibt es im Quellcode im Repository ein Verzeichnis für Patches:
+```
+firmware$ tree patches/
+patches/
+|-- lede
+|   |-- 0001-extend-small-flash-option.patch
+|   |-- 0002-remove-default-selection-of-ppp.patch
+|   |-- 0003-hostapd-prevent-channel-switch-for-5GHz.patch
+|   |-- 0004-netifd-update-to-git-HEAD-version.patch
+|   `-- 0005-mac80211-revert-upstream-change-breaking-AP-11s-VIF-.patch
+`-- routing
+    |-- 0001-batman-adv-update-to-2017.1.patch
+    |-- 0002-alfred-update-to-2017.1.patch
+    `-- 0003-alfred-adjust-intervals.patch
+
+2 directories, 8 files
+```
+(Quelle: https://github.com/freifunk-bielefeld/firmware)
+
+Die Dateien werden auf den Lede Quellcode mit `git am *.patch` angewendet um bestimmte Änderungen auf stabile Lede Veröffentlichungen vorzunehmen. Das können Bugfixes, Unterstützung für neue Routermodelle (sogenannte Backports) oder feste Einstellungen sein.
+
+Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das Lede Verzeichnis ein git repository ist, das beim Bauen anderere Feeds als git repos herunterlädt. Daher sind die Patches in einem Verzeichnis jeweils immer für ein git Repo. Im Lede Quellcode liegt z.B. der routing-feed im Pfad feeds/routing/.
+
+Um neue Patches hinzuzufügen oder zu ändern, müssen im Grunde die Patches zuerst mit `git am ...` angewendet werden. Jeder Patch ist dann ein Commit in der git Historie. Dann werden die die Commits geändert und wieder mit `git format-patch` als *.patch Datei exportiert.
+
+
+## Vorbereitung
 
 Im Firmware-Repository liegen unter files/patch/routing/ Patchdateien, die u.a. batman-adv aktualisieren.
 In diesem howto soll gezeigt werden, wie diese aktualisiert werden.
