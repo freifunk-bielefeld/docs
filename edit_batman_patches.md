@@ -28,6 +28,7 @@ Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das Lede Verzeichn
 Um neue Patches hinzuzufügen oder zu ändern, müssen im Grunde die Patches zuerst mit `git am ...` angewendet werden. Jeder Patch ist dann ein Commit in der git Historie. Dann werden die die Commits geändert und wieder mit `git format-patch` als *.patch Dateien exportiert.
 
 Im folgenden wird das Ändern der Patches für das batman-adv Paket aus dem routing Feed betrachtet.
+Da wir hier auch das Testen der Patches ermöglichen, sind ein paar Schritte zusätzlich nötig.
 
 ## Vorbereitung
 
