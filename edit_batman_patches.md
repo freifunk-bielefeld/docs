@@ -2,7 +2,7 @@
 
 ## Einleitung
 
-Bei den Freifunk Firmwares (gluon oder auch andere), gibt es im Quellcode im Repository ein Verzeichnis für Patches:
+Bei den Freifunk Firmwares ([gluon](https://github.com/freifunk-gluon) oder auch andere), gibt es im Quellcode im Repository ein Verzeichnis für Patches:
 ```
 git clone https://github.com/freifunk-bielefeld/firmware
 tree firmware/patches
@@ -21,9 +21,9 @@ firmware/patches/
 2 directories, 8 files
 ```
 
-Die Dateien werden auf den Lede Quellcode mit `git am *.patch` angewendet um bestimmte Änderungen auf stabile Lede Veröffentlichungen vorzunehmen. Das können Bugfixes, Unterstützung für neue Routermodelle (sogenannte Backports) oder feste Einstellungen sein.
+Die Dateien werden auf den [LEDE](https://lede-project.org) Quellcode mit `git am *.patch` angewendet um bestimmte Änderungen auf stabile LEDE Veröffentlichungen vorzunehmen. Das können Bugfixes, Unterstützung für neue Routermodelle (sogenannte Backports) oder feste Einstellungen sein.
 
-Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das Lede Verzeichnis ein git repository ist, das beim Bauen anderere Feeds als git repos herunterlädt. Daher sind die Patches in einem Verzeichnis jeweils immer für ein git Repo. Im Lede Quellcode liegt z.B. der routing-feed im Pfad feeds/routing/.
+Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das LEDE Verzeichnis ein git repository ist, das beim Bauen anderere Feeds als git repos herunterlädt. Daher sind die Patches in einem Verzeichnis jeweils immer für ein git Repo. Im LEDE Quellcode liegt z.B. der routing-feed im Pfad feeds/routing/.
 
 Um neue Patches hinzuzufügen oder zu ändern, müssen im Grunde die Patches zuerst mit `git am ...` angewendet werden. Jeder Patch ist dann ein Commit in der git Historie. Dann werden die die Commits geändert und wieder mit `git format-patch` als *.patch Dateien exportiert.
 
@@ -86,14 +86,14 @@ cd ../batman-adv
 git checkout tags/v2017.2
 ```
 
-Jetzt werden die existierenden batman-adv Patches aus dem Routing-Feed von Lede angewendet.
-Das ist sollte nie schiefgehen.
+Jetzt werden die existierenden batman-adv Patches aus dem Routing-Feed von LEDE angewendet.
+Das sollte nie schiefgehen.
 
 ```
 git am --whitespace=nowarn ../source/feeds/routing/batman-adv/patches/*.patch
 ```
 
-Nun die bisherigen Patches aus der Freifunk Firmware als Commits anwenden.
+Nun die bisherigen Patches aus der Freifunk Firmware als git commits anwenden.
 ```
 git am --whitespace=nowarn ../firmware/patches/routing/*.patch
 ```
@@ -117,7 +117,7 @@ git format-patch -n <commit-id>
 
 Jetzt wurden aus den Commit aktuelle *.patch Dateien erzeugt.
 
-Die Patchdateien dann nach Lede kopieren:
+Die Patchdateien dann nach LEDE kopieren:
 ```
 cp *.patch ../source/feeds/routing/batman-adv/patches/*
 ```
