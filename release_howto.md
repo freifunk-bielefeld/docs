@@ -39,13 +39,17 @@ for platform in $platforms; do
 	echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
 	echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
 	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
-	
+
 	# Debug output
 	echo "Build: $platform"
 
 	# Build image
 	make defconfig
-	make -j4
+	make -j1
+
+	# Free space
+	rm -rf build_dir/target-*
+	rm -rf build_dir/toolchain-*
 done
 ```
 
