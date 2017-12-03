@@ -30,6 +30,8 @@ platforms='
 	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7628=y
 	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt3883=y
 	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt288x=y
+	CONFIG_TARGET_x86=y\nCONFIG_TARGET_x86_generic=y
+	CONFIG_TARGET_x86_64=y\nCONFIG_TARGET_x86_64_Generic=y
 '
 
 for platform in $platforms; do
