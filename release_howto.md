@@ -16,42 +16,31 @@ per "make menuconfig" von Hand zu selektieren, kann dies auch per Script gescheh
 ```
 #!/bin/sh
 
-platforms='
-	CONFIG_TARGET_arm64=y
-	CONFIG_TARGET_ath25=y
-	CONFIG_TARGET_ar71xx=y
-	CONFIG_TARGET_brcm2708=y\nCONFIG_TARGET_brcm2708_bcm2708=y
-	CONFIG_TARGET_brcm2708=y\nCONFIG_TARGET_brcm2708_bcm2709=y
-	CONFIG_TARGET_bcm53xx=y
-	CONFIG_TARGET_brcm47xx=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt305x=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7620=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7621=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_mt7628=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt3883=y
-	CONFIG_TARGET_ramips=y\nCONFIG_TARGET_ramips_rt288x=y
-	CONFIG_TARGET_x86=y\nCONFIG_TARGET_x86_generic=y
-	CONFIG_TARGET_x86_64=y\nCONFIG_TARGET_x86_64_Generic=y
-'
+# dumpinfo.pl is used to get all targets configurations:
+# https://git.openwrt.org/?p=buildbot.git;a=blob;f=phase1/dumpinfo.pl
 
-for platform in $platforms; do
-	echo "$platform" > .config
-	
-	echo "CONFIG_TARGET_MULTI_PROFILE=y" >> .config
-	echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
-	echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
-	echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
+./dumpinfo.pl targets | while read arch pkgarch; do
+  # Debug output
+  echo "arch: $arch, pkgarch: $pkgarch"
 
-	# Debug output
-	echo "Build: $platform"
+  echo "CONFIG_TARGET_${arch%/*}=y" > .config
+  echo "CONFIG_TARGET_${arch%/*}_${arch#*/}=y" >> .config
 
-	# Build image
-	make defconfig
-	make -j1
+  echo "CONFIG_TARGET_MULTI_PROFILE=y" >> .config
+  echo "CONFIG_TARGET_ALL_PROFILES=y" >> .config
+  echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
+  echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
 
-	# Free space
-	rm -rf build_dir/target-*
-	rm -rf build_dir/toolchain-*
+  make defconfig
+  make -j4 tools/compile
+  make -j4 toolchain/compile
+
+  # Build package
+  make package/example1/{clean,compile} V=s
+
+  # Free space, but toolchain may be needed for multiple iterations!
+  #rm -rf build_dir/target-*
+  #rm -rf build_dir/toolchain-*
 done
 ```
 
