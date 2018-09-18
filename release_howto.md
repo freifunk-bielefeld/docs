@@ -31,6 +31,7 @@ per "make menuconfig" von Hand zu selektieren, kann dies auch per Script gescheh
   echo "CONFIG_TARGET_PER_DEVICE_ROOTFS=y" >> .config
   echo "CONFIG_PACKAGE_freifunk-basic=y" >> .config
 
+  make defconfig
   make -j4
 
   # Free space, but toolchain may be needed for multiple iterations!
