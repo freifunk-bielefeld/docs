@@ -19,9 +19,20 @@ per "make menuconfig" von Hand zu selektieren, kann dies auch per Script gescheh
 # dumpinfo.pl is used to get all targets configurations:
 # https://git.openwrt.org/?p=buildbot.git;a=blob;f=phase1/dumpinfo.pl
 
+pkgarch_prev=""
+
 ./dumpinfo.pl targets | while read arch pkgarch; do
+
   # Debug output
   echo "arch: $arch, pkgarch: $pkgarch"
+
+  # Only clear space if the package architecture changes
+  if [ "$pkgarch_prev" != "$pkgarch" ]; then
+    rm -rf build_dir/toolchain-*
+    rm -rf build_dir/target-*
+  fi
+
+  rm -rf tmp/
 
   echo "CONFIG_TARGET_${arch%/*}=y" > .config
   echo "CONFIG_TARGET_${arch%/*}_${arch#*/}=y" >> .config
@@ -34,9 +45,7 @@ per "make menuconfig" von Hand zu selektieren, kann dies auch per Script gescheh
   make defconfig
   make -j4
 
-  # Free space, but toolchain may be needed for multiple iterations!
-  #rm -rf build_dir/target-*
-  #rm -rf build_dir/toolchain-*
+  pkgarch_prev="$pkgarch"
 done
 ```
 
