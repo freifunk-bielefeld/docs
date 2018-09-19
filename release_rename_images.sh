@@ -9,14 +9,14 @@ fi
 ident="$1"
 path="$2"
 
-for path in $(find "$path" -iname "lede*"); do
+for path in $(find "$path" -iname "openwrt-*"); do
         dir="${path%/*}"
         file="${path##*/}"
         if [ "$file" != "${file/$ident/}" ]; then
                 echo "Already contains '$ident': $path"
                 continue
         fi
-	new_file="$ident"`echo "$file" | sed -e "s/lede-[^-]*-[^-]*//"`
+	new_file="$ident"`echo "$file" | sed -e "s/openwrt-[^-]*-[^-]*//"`
 	mv "$path" "$dir/$new_file"
 done
 
