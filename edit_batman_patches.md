@@ -7,7 +7,7 @@ Bei den Freifunk Firmwares ([gluon](https://github.com/freifunk-gluon) oder auch
 git clone https://github.com/freifunk-bielefeld/firmware
 tree firmware/patches
 firmware/patches/
-|-- lede
+|-- openwrt
 |   |-- 0001-extend-small-flash-option.patch
 |   |-- 0002-remove-default-selection-of-ppp.patch
 |   |-- 0003-hostapd-prevent-channel-switch-for-5GHz.patch
@@ -21,9 +21,9 @@ firmware/patches/
 2 directories, 8 files
 ```
 
-Die Dateien werden auf den [LEDE](https://lede-project.org) Quellcode mit `git am *.patch` angewendet um bestimmte Änderungen auf stabile LEDE Veröffentlichungen vorzunehmen. Das können Bugfixes, Unterstützung für neue Routermodelle (sogenannte Backports) oder feste Einstellungen sein.
+Die Dateien werden auf den [OpenWrt](https://openwrt.org) Quellcode mit `git am *.patch` angewendet um bestimmte Änderungen auf stabile OpenWrt Veröffentlichungen vorzunehmen. Das können Bugfixes, Unterstützung für neue Routermodelle (sogenannte Backports) oder feste Einstellungen sein.
 
-Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das LEDE Verzeichnis ein git repository ist, das beim Bauen anderere Feeds als git repos herunterlädt. Daher sind die Patches in einem Verzeichnis jeweils immer für ein git Repo. Im LEDE Quellcode liegt z.B. der routing-feed im Pfad feeds/routing/.
+Die Patches sind hier ins zwei Verzeichnisse aufgeteilt, weil das OpenWrt Verzeichnis ein git repository ist, das beim Bauen anderere Feeds als git repos herunterlädt. Daher sind die Patches in einem Verzeichnis jeweils immer für ein git Repo. Im OpenWrt Quellcode liegt z.B. der routing-feed im Pfad feeds/routing/.
 
 Um neue Patches hinzuzufügen oder zu ändern, müssen im Grunde die Patches zuerst mit `git am ...` angewendet werden. Jeder Patch ist dann ein Commit in der git Historie. Dann werden die die Commits geändert und wieder mit `git format-patch` als *.patch Dateien exportiert.
 
@@ -45,16 +45,16 @@ cd tmp
 
 Auschecken:
 ```
-git clone git://git.lede-project.org/source.git
+git clone https://git.openwrt.org/openwrt/openwrt.git
 git clone https://github.com/ffbsee/firmware.git
 git clone https://git.open-mesh.org/batman-adv.git
 ```
 
-## Lede vorbereiten
+## OpenWrt vorbereiten
 
-Lede feeds herunterladen/installieren
+OpenWrt feeds herunterladen/installieren
 ```
-cd source
+cd openwrt
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
@@ -71,7 +71,7 @@ Toolchain bauen. Das bauen eines Images ist nicht nötig, ich weiß aber gerade 
 make -j 4
 ```
 
-Das aus ausgecheckte batman-adv repo mit Lede-Paket verbinden. Dadurch werden die Quellen (genauer, commits) des batman-adv repos von Lede verwendet. Damit können wir live Änderungen vornehmen und testen:
+Das aus ausgecheckte batman-adv repo mit OpenWrt-Paket verbinden. Dadurch werden die Quellen (genauer, commits) des batman-adv repos von OpenWrt verwendet. Damit können wir live Änderungen vornehmen und testen:
 ```
 ln -s  ~/tmp/batman-adv/.git ~/tmp/source/feeds/routing/batman-adv/git-src
 ```
@@ -86,7 +86,7 @@ cd ../batman-adv
 git checkout tags/v2017.2
 ```
 
-Jetzt werden die existierenden batman-adv Patches aus dem Routing-Feed von LEDE angewendet.
+Jetzt werden die existierenden batman-adv Patches aus dem Routing-Feed von OpenWrt angewendet.
 Das sollte nie schiefgehen.
 
 ```
@@ -117,12 +117,12 @@ git format-patch -n <commit-id>
 
 Jetzt wurden aus den Commit aktuelle *.patch Dateien erzeugt.
 
-Die Patchdateien dann nach LEDE kopieren:
+Die Patchdateien dann nach OpenWrt kopieren:
 ```
 cp *.patch ../source/feeds/routing/batman-adv/patches/*
 ```
 
-Im Lede Source die patches platzieren, die vorherigen ersetzen, neue patches hinzufügen etc.
+Im OpenWrt Source die patches platzieren, die vorherigen ersetzen, neue patches hinzufügen etc.
 ```
 cd ../source/feeds/routing/
 # Ändern/Hinzufügen

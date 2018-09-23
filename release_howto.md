@@ -1,6 +1,6 @@
 # Ein Freifunk Release fertig machen
 
-Diese Anleitung baut alle Images für LEDE mit einer Freifunk Konfiguration.
+Diese Anleitung baut alle Images für OpenWrt mit einer Freifunk Konfiguration.
 
 Ein Release besteht aus drei Schritten:
  * Images bauen
@@ -81,7 +81,7 @@ Zum Generieren eines Schlüsselpaares wird ecdsautils verwendet.
 
 Installation:
 ```
-sudo apt-get install cmake pkg-config g++
+sudo apt install cmake pkg-config g++
 
 wget https://git.universe-factory.net/libuecc/snapshot/libuecc-7.zip
 unzip libuecc-7.zip
@@ -92,7 +92,7 @@ sudo make install
 cd ..
 rm -rf libuecc*
 
-apt-get install pkg-config
+apt install pkg-config
 
 wget https://github.com/tcatm/ecdsautils/archive/v0.3.2.zip -O ecdsautils-0.3.2.zip
 unzip ecdsautils-0.3.2.zip
