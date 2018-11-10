@@ -3,8 +3,7 @@
 Wenn man sich aus irgendeinem Grund aus dem Router ausgeschlossen hat,
 hilft der sogenannte Failsafe-Modus, um die Einstellungen des Routers
 zurückzusetzen, zu reparieren oder ein komplett neues Image einzuspielen.
-Im Failsafe-Modus läuft der Router mit minimalen Einstellungen und ignoiriert
-alle Änderungen am System.
+Im Failsafe-Modus startet der Router mit minimalen Einstellungen. Allerdings ohne graphische Oberfläche.
 
 Dabei handelt es sich um einen Mechanismus der in OpenWrt eigebaut ist.
 Daher ist auch die [Anleitung](http://wiki.openwrt.org/de/doc/howto/generic.failsafe) von OpenWrt zu empfehlen.
@@ -21,20 +20,19 @@ Ist im richtigen Moment der Failsafe aktiviert worden, blinkt sofort eine der LE
 am Gerät ca. 5 mal die Sekunde.
 
 Als nächstes muss der eigene Computer mit dem Router per Netzwerkkabel
-verbunden werden und dem Computer manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden.
+verbunden werden. Der Anschluss ist hierfür eigentlich egal. Das muss dem Computer manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden. Netzwerkmaske ist `255.255.255.0`.
 
-Nun kann man sich per Telnet auf dem Router einloggen:
+Über die Konsole kann man sich per ssh auf dem Router einloggen:
+
 ```
-telnet 192.168.1.1
+ssh 192.168.1.1
 ```
 
-Normalerweise sollte jeder der LAN-Anschlüsse funktionieren.
-Bei einigen Modellen funktioniert das jedoch nur der WAN-Anschluss.
-Ist der Failsafe aktiviert, muss dann probiert werden.
+Eventuell unter Windows Putty verwenden.
 
 ## Router Zurücksetzen
-Soll nun der Router zurückgesetzt werden reicht es den Befehl `firstboot` auszuführen,
-die Sicherheitsabfrage zu bestätigen und den Router neu zu starten.
+
+Soll nun der Router zurückgesetzt werden reicht es den Befehl `firstboot` auszuführen und die Sicherheitsabfrage zu bestätigen. Der Router startet nun wie frisch geflasht.
 
 ## Konfiguration Reparieren
 
