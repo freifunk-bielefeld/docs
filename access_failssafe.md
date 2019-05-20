@@ -20,15 +20,17 @@ Ist im richtigen Moment der Failsafe aktiviert worden, blinkt sofort eine der LE
 am Gerät ca. 5 mal die Sekunde.
 
 Als nächstes muss der eigene Computer mit dem Router per Netzwerkkabel
-verbunden werden. Der Anschluss ist hierfür eigentlich egal. Das muss dem Computer manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden. Netzwerkmaske ist `255.255.255.0`.
+verbunden werden. Der Anschluss ist hierfür eigentlich egal. Das muss dem Computer manuell die IP Adresse 192.168.1.2 (oder höher) gegeben werden. Die Netzwerkmaske ist `255.255.255.0`.
 
-Über die Konsole kann man sich per ssh auf dem Router einloggen:
+Über die Konsole kann man sich per [SSH](https://de.wikipedia.org/wiki/Secure_Shell) auf dem Router einloggen:
 
 ```
 ssh 192.168.1.1
 ```
 
-Eventuell unter Windows Putty verwenden.
+Unter Windows kann stattdessen [PuTTY](https://putty.org/) verwenden werden oder der inzwischen auch in Windows 10 eingebaut SSH-Client.
+
+(Für OpenWrt Releases vor 15.05 musste noch an dieser Stelle telnet verwendet werden.)
 
 ## Router Zurücksetzen
 
