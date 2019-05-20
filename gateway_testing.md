@@ -1,12 +1,12 @@
 
-#How does a gateway work?
+# How does a gateway work?
 
 A gateway is computer on the Freifunk network that announces that it can forward traffic into the Internet.
 Our Freifunk network is IPv6 only, but since many services on the Internet do not not have IPv6 commectivity,
 we employ a technique called DNS64 and NAT64 on the gateway.
 IPv6 makes decentralized networks easier and is the future.
 
-##What is DNS64?
+## What is DNS64?
 
 On the Gateway runs a DNS server which always returns an IPv6 address.
 If the target domain as a IPv6 address, it will be returned.
@@ -15,13 +15,13 @@ These special IPv6 address are contructed by using a special prefix (fdef:17a0:f
 and adding the bytes of the IPv4 address to the end. We use the "bind" DNS server for this DNS64.
 If the gateway itself has no IPv6 endpoint, all addresses will be constructed this way.
 
-##What is NAT64?
+## What is NAT64?
 
 NAT64 on the gateway translates all IPv6 packets using the special prefix to IPv4 packets.
 The target IPv4 address extracted fro mthe IPv6 address of the packet.
 For NAT64 we use the program called "tayga".
 
-##What are IPv6 Router Advertisments?
+## What are IPv6 Router Advertisments?
 
 This is similar to IPv4 DHCP, but more flexible. A host sends a request packet called IPv6 Router Solicitation
 to all routers (to everyone who listens) and waits for incoming answers.
@@ -32,11 +32,11 @@ The prefix might be one for the internal network and/or a public prefix which al
 a host to give itself a public IP address. This will make a host reachable from the Internet.
 Router Advertisments can be send out using the program called "radvd".
 
-#Testing a gateway
+# Testing a gateway
 
 To test a gateway in the Freifunk network, connect to the network and try the following steps.
 
-##Test DNS64
+## Test DNS64
 
 Let's try to request the IPv6 address the IP address of a website that only can be reached using IPv4.
 AAAA is a synonym for IPv6. We ask for an IPv6 address despite the fact that there is no offical entry.
@@ -69,7 +69,7 @@ Note:
   * when the gateway is has no native IPv6 endpoint, all connection are going through DNS64/NAT64
     * To access a computer on the Internet via IPv4 address, like "ping 8.8.8.8", is not possible the Router will discard the packet.
 
-##Test IPv6 Router Advertisments
+## Test IPv6 Router Advertisments
 
 Send out a request for the gateways over the wireless interface called wlan0:
 
@@ -97,7 +97,7 @@ and the DNS server entry should contain the private (fdef:..) address of the gat
 Both addresses are assigned to bat0. The prefix must contain fdef:17a0:ffb1:300::/64 and can contain a public
 prefix like 2001:bf7:1320:300::/64.
 
-##Test Internet access
+## Test Internet access
 
 To actually test Internet connectivity. We must make sure that the default routing table contains
 the default route pointing to the gateway.
